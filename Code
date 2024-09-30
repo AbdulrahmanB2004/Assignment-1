@@ -1,0 +1,246 @@
+class Room:
+    """Class to represent a room in the hotel."""
+
+    # Constructor/Initializer
+    def __init__(self, room_number: str, room_type: str, is_available: bool = True, amenities: list = None):
+        """Initialize room details."""
+        if amenities is None:
+            amenities = []
+        self.__room_number = room_number
+        self.__room_type = room_type
+        self.__is_available = is_available
+        self.__amenities = amenities
+
+    # Setter and Getter Methods
+    def set_room_number(self, number: str):
+        """Set room number."""
+        self.__room_number = number
+
+    def get_room_number(self) -> str:
+        """Get room number."""
+        return self.__room_number
+
+    def set_room_type(self, room_type: str):
+        """Set room type."""
+        self.__room_type = room_type
+
+    def get_room_type(self) -> str:
+        """Get room type."""
+        return self.__room_type
+
+    def set_is_available(self, available: bool):
+        """Set room availability."""
+        self.__is_available = available
+
+    def get_is_available(self) -> bool:
+        """Get room availability."""
+        return self.__is_available
+
+    def set_amenities(self, amenities: list):
+        """Set room amenities."""
+        self.__amenities = amenities
+
+    def get_amenities(self) -> list:
+        """Get room amenities."""
+        return self.__amenities
+
+    # Method to display room information
+    def display_room_info(self):
+        """Display the room's information."""
+        availability = "Available" if self.__is_available else "Not Available"
+        print(f"Room Number: {self.__room_number}")
+        print(f"Room Type: {self.__room_type}")
+        print(f"Availability: {availability}")
+        print(f"Amenities: {', '.join(self.__amenities)}")
+
+
+class Payment:
+    """Class to represent payment details."""
+
+    # Constructor/Initializer
+    def __init__(self, payment_id: str, amount: float, status: str = 'Pending', method: str = 'Credit Card'):
+        """Initialize payment details."""
+        self.__payment_id = payment_id
+        self.__amount = amount
+        self.__status = status
+        self.__method = method
+
+    # Setter and Getter Methods
+    def set_payment_id(self, payment_id: str):
+        """Set payment ID."""
+        self.__payment_id = payment_id
+
+    def get_payment_id(self) -> str:
+        """Get payment ID."""
+        return self.__payment_id
+
+    def set_amount(self, amount: float):
+        """Set payment amount."""
+        self.__amount = amount
+
+    def get_amount(self) -> float:
+        """Get payment amount."""
+        return self.__amount
+
+    def set_status(self, status: str):
+        """Set payment status."""
+        self.__status = status
+
+    def get_status(self) -> str:
+        """Get payment status."""
+        return self.__status
+
+    def set_method(self, method: str):
+        """Set payment method."""
+        self.__method = method
+
+    def get_method(self) -> str:
+        """Get payment method."""
+        return self.__method
+
+    # Method to display payment information
+    def display_payment_info(self):
+        """Display the payment's information."""
+        print(f"Payment ID: {self.__payment_id}")
+        print(f"Amount: ${self.__amount}")
+        print(f"Status: {self.__status}")
+        print(f"Method: {self.__method}")
+
+
+class Reservation:
+    """Class to represent a reservation."""
+
+    # Constructor/Initializer
+    def __init__(self, reservation_id: str, check_in_date: str, check_out_date: str, room: Room, status: str = 'Pending', payment: Payment = None):
+        """Initialize reservation details."""
+        self.__reservation_id = reservation_id
+        self.__check_in_date = check_in_date
+        self.__check_out_date = check_out_date
+        self.__room = room
+        self.__status = status
+        self.__payment = payment
+
+    # Setter and Getter Methods
+    def set_reservation_id(self, reservation_id: str):
+        """Set reservation ID."""
+        self.__reservation_id = reservation_id
+
+    def get_reservation_id(self) -> str:
+        """Get reservation ID."""
+        return self.__reservation_id
+
+    def set_check_in_date(self, date: str):
+        """Set check-in date."""
+        self.__check_in_date = date
+
+    def get_check_in_date(self) -> str:
+        """Get check-in date."""
+        return self.__check_in_date
+
+    def set_check_out_date(self, date: str):
+        """Set check-out date."""
+        self.__check_out_date = date
+
+    def get_check_out_date(self) -> str:
+        """Get check-out date."""
+        return self.__check_out_date
+
+    def set_room(self, room: Room):
+        """Set the room for the reservation."""
+        self.__room = room
+
+    def get_room(self) -> Room:
+        """Get the room associated with the reservation."""
+        return self.__room
+
+    def set_status(self, status: str):
+        """Set reservation status."""
+        self.__status = status
+
+    def get_status(self) -> str:
+        """Get reservation status."""
+        return self.__status
+
+    def set_payment(self, payment: Payment):
+        """Set payment details for the reservation."""
+        self.__payment = payment
+
+    def get_payment(self) -> Payment:
+        """Get payment details."""
+        return self.__payment
+
+    # Method to display reservation information
+    def display_reservation_info(self):
+        """Display the reservation's information."""
+        print(f"Reservation ID: {self.__reservation_id}")
+        print(f"Check-in Date: {self.__check_in_date}")
+        print(f"Check-out Date: {self.__check_out_date}")
+        print(f"Status: {self.__status}")
+        if self.__room:
+            self.__room.display_room_info()
+        if self.__payment:
+            self.__payment.display_payment_info()
+
+
+class Customer:
+    """Class to represent a customer."""
+
+    # Constructor/Initializer
+    def __init__(self, customer_name: str, email: str, phone_number: str, reservation: Reservation = None):
+        """Initialize customer details."""
+        self.__customer_name = customer_name
+        self.__email = email
+        self.__phone_number = phone_number
+        self.__reservation = reservation
+
+    # Setter and Getter Methods
+    def set_customer_name(self, name: str):
+        """Set customer name."""
+        self.__customer_name = name
+
+    def get_customer_name(self) -> str:
+        """Get customer name."""
+        return self.__customer_name
+
+    def set_email(self, email: str):
+        """Set email address."""
+        self.__email = email
+
+    def get_email(self) -> str:
+        """Get email address."""
+        return self.__email
+
+    def set_phone_number(self, phone: str):
+        """Set phone number."""
+        self.__phone_number = phone
+
+    def get_phone_number(self) -> str:
+        """Get phone number."""
+        return self.__phone_number
+
+    def set_reservation(self, reservation: Reservation):
+        """Set reservation details."""
+        self.__reservation = reservation
+
+    def get_reservation(self) -> Reservation:
+        """Get reservation details."""
+        return self.__reservation
+
+    # Method to display customer information
+    def display_customer_info(self):
+        """Display the customer's information."""
+        print(f"Customer Name: {self.__customer_name}")
+        print(f"Email: {self.__email}")
+        print(f"Phone Number: {self.__phone_number}")
+        if self.__reservation:
+            self.__reservation.display_reservation_info()
+
+
+# Create instances and display the information using the methods
+room = Room("2 Queen Beds", "No Smoking/Desk/Safe/Coffee Maker In Room/Hair Dryer", False, ["Desk", "Safe", "Coffee Maker", "Hair Dryer"])
+payment = Payment("Mastercard (ending in 9904)", 201.48, "Processed", "Mastercard")
+reservation = Reservation("52523687", "Mon, Septemeber 30, 2024 - 03:00 PM", "Tue, September 31, 2024 - 12:00 PM", room, "Confirmed", payment)
+customer = Customer("Abdulrahman M Baharoon", "202234125@zu.ac.ae", "0554595979", reservation)
+
+print("Customer Information:")
+customer.display_customer_info()
